@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of Ulfa Azizah &amp; Dimas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <?!= include('Stylesheet'); ?>
+</head>
+<body>
+  <!-- Preload Lagu "A Thousand Years" (Christina Perri) Sejak Halaman Pertama Dibuka -->
+  <audio id="wedding-bg-audio" preload="auto" loop style="display:none;">
+    <source src="https://archive.org/download/christina-perri-a-thousand-years_20260624/Christina%20Perri%20-%20A%20Thousand%20Years.mp3" type="audio/mpeg">
+    <source src="https://archive.org/download/athousandyearschristinaperri_202003/A%20Thousand%20Years%20-%20Christina%20Perri.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- =====================================================================
+       DEFINISI SVG RANGKAIAN BUNGA SAKURA & DAUN EMAS MEKAR (INLINE VECTOR)
+       Dijamin selalu tampil tajam di semua browser HP & Desktop tanpa bergantung emoji
+       ===================================================================== -->
+  <svg width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+    <defs>
+      <radialGradient id="sakuraPetalGrad" cx="35%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#FFF7FA" />
+        <stop offset="45%" stop-color="#FFD1DC" />
+        <stop offset="85%" stop-color="#F28B9F" />
+        <stop offset="100%" stop-color="#C94A6A" />
+      </radialGradient>
+      <radialGradient id="sakuraCenterGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFF8DC" />
+        <stop offset="60%" stop-color="#D4AF37" />
+        <stop offset="100%" stop-color="#8B1C29" />
+      </radialGradient>
+      <linearGradient id="goldBranchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F3E5AB" />
+        <stop offset="50%" stop-color="#D4AF37" />
+        <stop offset="100%" stop-color="#7A5813" />
+      </linearGradient>
+
+      <symbol id="sakura-cluster-sym" viewBox="0 0 140 140">
+        <!-- Ranting & Daun Emas Melengkung -->
+        <path d="M8,125 C28,85 75,38 128,12" stroke="url(#goldBranchGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        <path d="M22,95 C45,92 64,76 82,52" stroke="url(#goldBranchGrad)" stroke-width="1.8" fill="none" stroke-linecap="round" />
+        <!-- Daun Emas Keraton -->
+        <path d="M35,50 C20,38 18,22 32,18 C42,26 44,40 35,50 Z" fill="url(#goldBranchGrad)" opacity="0.88" />
+        <path d="M88,36 C96,18 112,14 118,26 C108,36 96,40 88,36 Z" fill="url(#goldBranchGrad)" opacity="0.88" />
+        <path d="M46,96 C58,108 76,106 80,92 C68,86 54,88 46,96 Z" fill="url(#goldBranchGrad)" opacity="0.82" />
+
+        <!-- Bunga Sakura Utama (Tengah Kiri-Atas) - 5 Kelopak Mekar -->
+        <g transform="translate(54, 52)">
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(0)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(72)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(144)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(216)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(288)" />
+          <circle cx="0" cy="0" r="5.5" fill="url(#sakuraCenterGrad)" />
+          <circle cx="-4" cy="-7" r="1.3" fill="#FFF8DC" />
+          <circle cx="5" cy="-6" r="1.3" fill="#FFF8DC" />
+          <circle cx="7" cy="2" r="1.3" fill="#FFF8DC" />
+          <circle cx="0" cy="7" r="1.3" fill="#FFF8DC" />
+          <circle cx="-7" cy="2" r="1.3" fill="#FFF8DC" />
+        </g>
+
+        <!-- Bunga Sakura Kedua (Kanan Atas) -->
+        <g transform="translate(94, 28) scale(0.72) rotate(22)">
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(0)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(72)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(144)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(216)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(288)" />
+          <circle cx="0" cy="0" r="5" fill="url(#sakuraCenterGrad)" />
+        </g>
+
+        <!-- Bunga Sakura Ketiga (Kiri Bawah) -->
+        <g transform="translate(26, 86) scale(0.68) rotate(-18)">
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(0)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(72)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(144)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(216)" />
+          <path d="M0,-8 C-10,-28 -22,-26 -16,-6 C-12,2 -4,4 0,0 Z" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.7" transform="rotate(288)" />
+          <circle cx="0" cy="0" r="5" fill="url(#sakuraCenterGrad)" />
+        </g>
+
+        <!-- Kuncup Sakura & Mutiara Emas -->
+        <circle cx="78" cy="70" r="6" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.8" />
+        <circle cx="18" cy="58" r="4.5" fill="url(#sakuraPetalGrad)" stroke="#D4AF37" stroke-width="0.8" />
+        <circle cx="68" cy="22" r="3" fill="#F3E5AB" />
+        <circle cx="38" cy="112" r="2.8" fill="#F3E5AB" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- =====================================================================
+       FASE 1 & FASE 2: MODAL COVER TANPA SCROLL, GERBANG AGUNG 3D & BUNGA SAKURA
+       ===================================================================== -->
+  <div id="pin-gate" class="pin-gate-overlay">
+    <!-- [0.0s - 1.2s] Background Aula Joglo (1PM-8RFPofVmOZYpsXB1R4lceNVBrNqip) -->
+    <div id="gate-bg-layer" class="couple-bg-layer anim-phase1-bg">
+      <img
+        id="img-gate-bg"
+        src="https://drive.google.com/thumbnail?id=1PM-8RFPofVmOZYpsXB1R4lceNVBrNqip&sz=w1000"
+        alt="Background Aula Joglo Pernikahan Ulfa & Dimas"
+        decoding="async"
+        class="gate-bg-img"
+      />
+      <div class="gate-bg-scrim"></div>
+    </div>
+
+    <!-- Hujan Kelopak Bunga Sakura Ringan di Halaman Pertama Cover PIN -->
+    <div class="sakura-petals-container" aria-hidden="true">
+      <span class="sakura-petal sp-1"></span>
+      <span class="sakura-petal sp-2"></span>
+      <span class="sakura-petal sp-3"></span>
+      <span class="sakura-petal sp-4"></span>
+      <span class="sakura-petal sp-5"></span>
+      <span class="sakura-petal sp-6"></span>
+      <span class="sakura-petal sp-7"></span>
+      <span class="sakura-petal sp-8"></span>
+    </div>
+
+    <!-- [0.3s - 0.9s] Ornamen Border Sudut Emas & Rangkaian Bunga Sakura di Sudut Layar -->
+    <div class="anim-phase1-corners" aria-hidden="true">
+      <div class="gold-corner corner-tl"></div>
+      <div class="gold-corner corner-tr"></div>
+      <div class="gold-corner corner-bl"></div>
+      <div class="gold-corner corner-br"></div>
+      <svg class="sakura-screen-corner ssc-tl"><use href="#sakura-cluster-sym"></use></svg>
+      <svg class="sakura-screen-corner ssc-tr"><use href="#sakura-cluster-sym"></use></svg>
+    </div>
+
+    <!-- PINTU GERBANG AGUNG KERATON KEMBAR (KIRI & KANAN) — Membuka Mulus 3.6 Detik Setelah PIN Diinput -->
+    <div id="royal-gate-doors" class="royal-gate-doors" aria-hidden="true">
+      <div id="gate-seam-burst" class="gate-seam-burst"></div>
+      <div class="gate-door gate-door-left">
+        <div class="gate-door-inner">
+          <div class="gate-carving-lines"></div>
+          <svg class="sakura-door-cluster sdc-tl"><use href="#sakura-cluster-sym"></use></svg>
+          <svg class="sakura-door-cluster sdc-bl"><use href="#sakura-cluster-sym"></use></svg>
+          <div class="gate-medallion gate-medallion-left">
+            <span class="gate-gunungan-icon">⚜</span>
+            <span class="gate-handle"></span>
+          </div>
+        </div>
+      </div>
+      <div class="gate-door gate-door-right">
+        <div class="gate-door-inner">
+          <div class="gate-carving-lines"></div>
+          <svg class="sakura-door-cluster sdc-tr"><use href="#sakura-cluster-sym"></use></svg>
+          <svg class="sakura-door-cluster sdc-br"><use href="#sakura-cluster-sym"></use></svg>
+          <div class="gate-medallion gate-medallion-right">
+            <span class="gate-handle"></span>
+            <span class="gate-gunungan-icon">⚜</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAGE A: CONTAINER CARD KUBAH/ARCH TENGAH (HALAMAN PERTAMA INPUT PIN — TANPA SCROLLBAR & TANPA TOMBOL ULANGI) -->
+    <div id="pin-gate-center-card" class="pin-gate-card arch-card anim-phase1-card">
+      <!-- Rangkaian Bunga Sakura Mekar di 4 Sudut Kartu Kubah Halaman Pertama -->
+      <svg class="sakura-card-corner scc-tl" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+      <svg class="sakura-card-corner scc-tr" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+      <svg class="sakura-card-corner scc-bl" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+      <svg class="sakura-card-corner scc-br" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+
+      <!-- [0.9s - 1.4s] Gambar 1: Foto Mempelai Cover PIN (Drive 1: 11U5mxsda2pUewOnUqs7p8ChCxcG8d32A) & Badge Tanggal -->
+      <div class="arch-photo-wrap anim-phase1-photo">
+        <svg class="sakura-photo-corner spc-tl" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+        <svg class="sakura-photo-corner spc-tr" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+        <div class="arch-photo-frame">
+          <img
+            id="img-gate-arch"
+            src="https://drive.google.com/thumbnail?id=11U5mxsda2pUewOnUqs7p8ChCxcG8d32A&sz=w800"
+            alt="Potret Pengantin Ulfa Azizah & Dimas"
+            decoding="async"
+            class="arch-photo-img"
+          />
+          <div class="arch-photo-scrim"></div>
+          <div class="arch-date-badge">14 · 02 · 2027</div>
+        </div>
+      </div>
+
+      <!-- [1.2s - 1.6s] Teks Nama Mempelai -->
+      <div class="anim-phase1-names">
+        <p class="kicker-gold">THE WEDDING OF</p>
+        <h1 class="couple-title">Ulfa Azizah <span>&amp;</span> Dimas</h1>
+        <p class="date-subtitle">Minggu, 14 Februari 2027 · Pendopo Agung Royal Ambarrukmo Yogyakarta</p>
+        <div class="gate-divider"></div>
+      </div>
+
+      <!-- [1.5s - 1.9s] Tombol "Buka Surat Undangan" -->
+      <div id="gate-step-1">
+        <p class="gate-lead-text anim-phase1-names">
+          Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk membuka gerbang surat undangan pernikahan kami.
+        </p>
+        <div class="cta-pulse-wrap anim-phase1-cta">
+          <span class="cta-glow-halo" aria-hidden="true"></span>
+          <button type="button" class="btn-gold-primary" style="width:100%; position:relative;" onclick="showPinInputBox()">
+            ✉ Buka Surat Undangan
+          </button>
+        </div>
+      </div>
+
+      <!-- Kotak Input PIN (Tanpa Teks Contoh PIN, Langsung Input & Buka Gerbang) -->
+      <div id="gate-step-2" class="pin-input-modal-box" style="display:none;">
+        <div class="pin-box-header">
+          <span class="kicker-gold">MASUKKAN PIN UNDANGAN</span>
+          <button type="button" class="btn-link-back" onclick="hidePinInputBox()">← Kembali</button>
+        </div>
+        <form id="pin-verify-form" onsubmit="handleVerifyPin(event)">
+          <input
+            id="pin-input"
+            type="text"
+            maxlength="12"
+            placeholder="Ketik Kode PIN Anda"
+            value="<?= initialPin ?>"
+            autocomplete="off"
+          />
+          <p id="pin-error" class="error-msg" style="display:none;"></p>
+          <button id="btn-verify-pin" type="submit" class="btn-gold-primary" style="width:100%; margin-top:10px;">
+            Buka Gerbang Undangan ➔
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       FASE 3: HALAMAN UTAMA (TANPA NAVBAR)
+       - Section 01 (#hero): Menggunakan Background Aula Joglo + Rangkaian Bunga Sakura
+       - Saat Di-scroll ke Bawah (#mempelai dst.): Background Polosan Royal Maroon (#26080E)
+       ===================================================================== -->
+  <div id="invitation-wrapper" style="display:none;">
+    <!-- Hujan Kelopak Bunga Sakura Ringan di Halaman Utama -->
+    <div class="sakura-petals-container" aria-hidden="true">
+      <span class="sakura-petal sp-1"></span>
+      <span class="sakura-petal sp-2"></span>
+      <span class="sakura-petal sp-3"></span>
+      <span class="sakura-petal sp-4"></span>
+      <span class="sakura-petal sp-5"></span>
+      <span class="sakura-petal sp-6"></span>
+      <span class="sakura-petal sp-7"></span>
+      <span class="sakura-petal sp-8"></span>
+    </div>
+
+    <!-- [1.0s] Kompas Perjalanan / Floating Nav Menu -->
+    <aside class="journey-compass anim-phase3-chrome" aria-label="Kompas Perjalanan">
+      <div id="journey-current-badge" class="journey-badge">01 · Pelaminan Sapaan</div>
+      <div class="journey-stops-box">
+        <a href="#hero" class="j-stop active" data-stop="0"><span>01 · Pelaminan Sapaan</span><i class="j-dot"></i></a>
+        <a href="#mempelai" class="j-stop" data-stop="1"><span>02 · Mempelai &amp; Acara</span><i class="j-dot"></i></a>
+        <a href="#galeri" class="j-stop" data-stop="2"><span>03 · Galeri Momen</span><i class="j-dot"></i></a>
+        <a href="#rsvp" class="j-stop" data-stop="3"><span>04 · Konfirmasi RSVP</span><i class="j-dot"></i></a>
+        <a href="#wedding-gift" class="j-stop" data-stop="4"><span>05 · Tanda Kasih</span><i class="j-dot"></i></a>
+        <a href="#ucapan" class="j-stop" data-stop="5"><span>06 · Doa &amp; Restu</span><i class="j-dot"></i></a>
+      </div>
+    </aside>
+
+    <!-- 1. SECTION 01: PELAMINAN SAPAAN (DENGAN BACKGROUND AULA JOGLO HANYA DI SECTION PERTAMA INI SAJA) -->
+    <section id="hero" class="hero-section-first">
+      <div class="hero-joglo-bg-only" aria-hidden="true">
+        <img
+          id="img-main-joglo-bg"
+          src="https://drive.google.com/thumbnail?id=1PM-8RFPofVmOZYpsXB1R4lceNVBrNqip&sz=w1000"
+          alt=""
+          decoding="async"
+          class="gate-bg-img"
+        />
+        <div class="hero-joglo-scrim"></div>
+      </div>
+
+      <!-- Kanopi Rangkaian Bunga Sakura di Sudut Atas Section Pertama -->
+      <svg class="sakura-hero-canopy shc-tl" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+      <svg class="sakura-hero-canopy shc-tr" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+
+      <div class="main-container hero-inner-container">
+        <!-- Panggung Utama di Tengah Aula Joglo: Gambar 2 Bingkai Pengantin Berlapis Bunga Sakura (Drive 2: 1eTjiCq_kGE_c7pG6mqejL12iNokL7i8g) -->
+        <div class="hero-stage-center anim-phase3-photo-right">
+          <div class="hero-stage-pill">✦ THE WEDDING OF · YOGYAKARTA ✦</div>
+          <div class="sakura-bridal-frame-outer">
+            <!-- Rangkaian Bunga Sakura SVG Mekar di 4 Sudut Bingkai Pengantin -->
+            <svg class="sakura-frame-cluster sfc-tl" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+            <svg class="sakura-frame-cluster sfc-tr" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+            <svg class="sakura-frame-cluster sfc-bl" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+            <svg class="sakura-frame-cluster sfc-br" aria-hidden="true"><use href="#sakura-cluster-sym"></use></svg>
+
+            <div class="sakura-bridal-matting">
+              <div class="sakura-bridal-portrait">
+                <img
+                  id="img-hero-main"
+                  src="https://drive.google.com/thumbnail?id=1eTjiCq_kGE_c7pG6mqejL12iNokL7i8g&sz=w1000"
+                  alt="Potret Pernikahan Ulfa Azizah & Dimas"
+                  decoding="async"
+                  fetchpriority="high"
+                  class="sakura-bridal-img"
+                />
+                <div class="sakura-portrait-caption">
+                  <p>PASANGAN BERBAHAGIA</p>
+                  <h3>Ulfa Azizah &amp; Dimas</h3>
+                  <span>Minggu, 14 Februari 2027</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kartu Sapaan Tamu, Nama Mempelai, Kutipan Ayat & Tombol CTA di Bawah Bingkai Pengantin -->
+        <div class="hero-left-card hero-center-welcome-card">
+          <div>
+            <!-- [0.4s] Teks Nama Mempelai & Sapaan Tamu -->
+            <div class="anim-phase3-text-left">
+              <p class="kicker-maroon">UNDANGAN PERNIKAHAN · YOGYAKARTA</p>
+              <h1 class="hero-couple-names">Ulfa Azizah <span>&amp;</span> Dimas</h1>
+              <p class="hero-date">Minggu, 14 Februari 2027 · Pendopo Agung Royal Ambarrukmo</p>
+
+              <!-- Nama Tamu Otomatis Muncul di Sini dengan Kontras Tinggi -->
+              <div class="hero-guest-card">
+                <p class="kicker-maroon">Kepada Yth. Bapak / Ibu / Saudara / i:</p>
+                <h2 id="hero-guest-name" class="hero-guest-title">-</h2>
+                <p id="hero-guest-detail" class="hero-guest-sub">-</p>
+              </div>
+            </div>
+
+            <!-- [0.7s] Kutipan Ayat (translateY(20px) -> 0 + fade-in) -->
+            <blockquote class="philosophy-quote anim-phase3-quote-cta">
+              &ldquo;Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.&rdquo;
+              <span>QS. Ar-Rum : 21</span>
+            </blockquote>
+          </div>
+
+          <!-- [0.7s] Tombol CTA (RSVP / Gift / Scroll) -->
+          <div class="hero-cta-row anim-phase3-quote-cta" style="justify-content:center;">
+            <a href="#rsvp" class="btn-gold-primary">Konfirmasi Kehadiran (RSVP)</a>
+            <a href="#wedding-gift" class="btn-outline-gold">Kirim Wedding Gift</a>
+            <a href="#mempelai" class="btn-outline-gold">Scroll Isi Undangan ↓</a>
+          </div>
+        </div>
+
+        <!-- [1.0s] Baris Hitung Mundur (Countdown Bar) -->
+        <div class="countdown-grid anim-phase3-chrome">
+          <div class="cd-card">
+            <div>
+              <span class="cd-label">Menuju Hari H</span>
+              <span class="cd-unit">Hari</span>
+            </div>
+            <span id="cd-days" class="cd-number">00</span>
+          </div>
+          <div class="cd-card">
+            <div>
+              <span class="cd-label">Waktu Tersisa</span>
+              <span class="cd-unit">Jam</span>
+            </div>
+            <span id="cd-hours" class="cd-number">00</span>
+          </div>
+          <div class="cd-card">
+            <div>
+              <span class="cd-label">Waktu Tersisa</span>
+              <span class="cd-unit">Menit</span>
+            </div>
+            <span id="cd-mins" class="cd-number">00</span>
+          </div>
+          <div class="cd-card">
+            <div>
+              <span class="cd-label">Hitungan Mundur</span>
+              <span class="cd-unit">Detik</span>
+            </div>
+            <span id="cd-secs" class="cd-number">00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MULAI DARI SINI KE BAWAH: BACKGROUND POLOSAN ROYAL MAROON (#26080E) DENGAN TEKS KONTRAS TINGGI -->
+    <main class="main-container plain-scroll-sections">
+      <!-- 2. PROFIL MEMPELAI & RANGKAIAN ACARA -->
+      <section id="mempelai" class="section-block">
+        <div class="section-header-center">
+          <p class="kicker-bright-gold">ASSALAMU'ALAIKUM WARAHMATULLAHI WABARAKATUH</p>
+          <h2 class="section-heading">Mempelai yang Berbahagia</h2>
+          <p class="section-lead">
+            Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami:
+          </p>
+        </div>
+
+        <div class="couple-grid" style="margin-top:28px;">
+          <!-- Kartu Mempelai Wanita + Foto Drive (1y9XU1vd5QsGszWf51DFTnfrRedOJSZeY) -->
+          <div class="couple-profile-card">
+            <div class="couple-photo-col">
+              <img
+                id="img-bride-profile"
+                src="https://drive.google.com/thumbnail?id=1y9XU1vd5QsGszWf51DFTnfrRedOJSZeY&sz=w800"
+                alt="Ulfa Azizah, S.Psi."
+                loading="eager"
+                decoding="async"
+                class="couple-portrait-img"
+              />
+            </div>
+            <div class="couple-info-col">
+              <div>
+                <p class="kicker-maroon">Mempelai Wanita</p>
+                <h3 class="person-fullname">Ulfa Azizah, S.Psi.</h3>
+                <p class="parents-desc">
+                  Putri Pertama dari Bapak H. Ahmad Fauzi &amp; Ibu Hj. Siti Rahmawati
+                </p>
+              </div>
+              <p class="couple-location-tag">Yogyakarta</p>
+            </div>
+          </div>
+
+          <!-- Kartu Mempelai Pria + Foto Drive (1qfq7jIPx7ZrVXFJpjJaZF-7jOb2NoXVc) -->
+          <div class="couple-profile-card">
+            <div class="couple-photo-col">
+              <img
+                id="img-groom-profile"
+                src="https://drive.google.com/thumbnail?id=1qfq7jIPx7ZrVXFJpjJaZF-7jOb2NoXVc&sz=w800"
+                alt="Dimas, S.Kom."
+                loading="eager"
+                decoding="async"
+                class="couple-portrait-img"
+              />
+            </div>
+            <div class="couple-info-col">
+              <div>
+                <p class="kicker-maroon">Mempelai Pria</p>
+                <h3 class="person-fullname">Dimas, S.Kom.</h3>
+                <p class="parents-desc">
+                  Putra Kedua dari Bapak Ir. Bambang Suryono &amp; Ibu Hj. Endang Sulastri
+                </p>
+              </div>
+              <p class="couple-location-tag">Jakarta · Yogyakarta</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider-ornament">
+          <span>❖ RANGKAIAN ACARA PERNIKAHAN ❖</span>
+        </div>
+
+        <div class="event-grid">
+          <div class="kraton-card">
+            <p class="kicker-maroon">01. Akad Nikah</p>
+            <h3 class="card-title">Ijab Qobul</h3>
+            <p class="card-desc">
+              Prosesi pengucapan janji suci pernikahan di hadapan penghulu, orang tua, dan saksi keluarga.
+            </p>
+            <div class="event-time-meta">
+              <span>Minggu, 14 Februari 2027</span>
+              <span class="mono-maroon">08.00 – 10.00 WIB</span>
+            </div>
+          </div>
+
+          <div class="kraton-card">
+            <p class="kicker-maroon">02. Prosesi Adat</p>
+            <h3 class="card-title">Upacara Panggih &amp; Sungkeman</h3>
+            <p class="card-desc">
+              Prosesi pertemuan kedua mempelai dengan adat Jawa dilanjutkan sungkeman kepada orang tua.
+            </p>
+            <div class="event-time-meta">
+              <span>Minggu, 14 Februari 2027</span>
+              <span class="mono-maroon">10.00 – 11.00 WIB</span>
+            </div>
+          </div>
+
+          <div class="kraton-card">
+            <p class="kicker-maroon">03. Resepsi Pernikahan</p>
+            <h3 class="card-title">Syukuran &amp; Ramah Tamah</h3>
+            <p class="card-desc">
+              Jamuan ramah tamah bersama keluarga besar, kerabat, dan seluruh tamu undangan.
+            </p>
+            <div class="event-time-meta">
+              <span>Minggu, 14 Februari 2027</span>
+              <span class="mono-maroon">11.00 – 14.00 WIB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="venue-banner">
+          <div>
+            <h4>Pendopo Agung Royal Ambarrukmo Yogyakarta</h4>
+            <p>Jl. Laksda Adisucipto No. 81, Caturtunggal, Depok, Sleman, Yogyakarta</p>
+          </div>
+          <a href="https://maps.google.com/?q=Pendopo+Agung+Royal+Ambarrukmo+Yogyakarta" target="_blank" rel="noopener noreferrer" class="btn-outline-gold">
+            Buka Lokasi di Google Maps
+          </a>
+        </div>
+      </section>
+
+      <!-- 3. GALERI FOTO PRE-WEDDING KEDUA MEMPELAI (OTOMATIS DARI DRIVE_PHOTO_IDS DI CODE.GS) -->
+      <section id="galeri" class="section-block">
+        <div class="section-header-center">
+          <p class="kicker-bright-gold">GALERI FOTO PRE-WEDDING</p>
+          <h2 class="section-heading">Momen Kebahagiaan Ulfa &amp; Dimas</h2>
+          <p class="section-lead">Klik pada foto untuk memperbesar tampilan penuh (Lightbox).</p>
+        </div>
+
+        <!-- Dirender otomatis oleh JavaScript berdasarkan daftar ID Drive di Code.gs -->
+        <div id="gallery-bento-grid" class="gallery-bento"></div>
+      </section>
+
+      <!-- 4. FORMULIR RSVP KEHADIRAN (DENGAN BACKGROUND BERBAYANG ID: 1Tw8kQBOkkJnjH5loQKd0kWyHRhq0EGIb) -->
+      <section id="rsvp" class="section-block section-with-bg-overlay">
+        <div class="section-bg-shadow-wrap" aria-hidden="true">
+          <img
+            id="img-rsvp-bg"
+            src="https://drive.google.com/thumbnail?id=1Tw8kQBOkkJnjH5loQKd0kWyHRhq0EGIb&sz=w1000"
+            alt=""
+            decoding="async"
+            class="section-bg-shadow-img pos-rsvp"
+          />
+          <div class="section-bg-shadow-overlay"></div>
+        </div>
+        <div class="two-col-section section-fg-content">
+          <div>
+            <p class="kicker-bright-gold">RSVP KEHADIRAN</p>
+            <h2 class="section-heading">Konfirmasi Kehadiran Tamu</h2>
+            <p class="section-lead">
+              Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.
+            </p>
+            <div class="kraton-card" style="margin-top:20px;">
+              <p class="kicker-maroon">Informasi Tamu Undangan</p>
+              <p style="margin-top:6px; color:#2B0910;">Nama Tamu: <strong id="rsvp-guest-badge">-</strong></p>
+              <p style="margin-top:4px; color:#2B0910;">Kategori: <span id="rsvp-category-badge">-</span></p>
+              <p style="margin-top:4px; color:#2B0910;">Kuota Undangan: <span id="rsvp-quota-badge">-</span></p>
+            </div>
+          </div>
+
+          <form id="rsvp-form" class="kraton-form" onsubmit="handleRsvpSubmit(event)">
+            <div class="form-row">
+              <label>Nama Tamu Undangan (Otomatis)</label>
+              <input type="text" id="rsvp-name" readonly />
+            </div>
+            <div class="form-row-2">
+              <div>
+                <label>Konfirmasi Kehadiran</label>
+                <select id="rsvp-status">
+                  <option value="Hadir">InsyaAllah Hadir</option>
+                  <option value="Berhalangan">Mohon Maaf Berhalangan</option>
+                </select>
+              </div>
+              <div>
+                <label>Jumlah Tamu yang Hadir</label>
+                <select id="rsvp-count">
+                  <option value="1">1 Orang</option>
+                  <option value="2">2 Orang</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Sesi Acara yang Dihadiri</label>
+              <select id="rsvp-session">
+                <option value="Akad Nikah & Resepsi Pernikahan">Akad Nikah &amp; Resepsi Pernikahan</option>
+                <option value="Resepsi Pernikahan Saja">Resepsi Pernikahan Saja (11.00 – 14.00 WIB)</option>
+                <option value="Akad Nikah Saja">Akad Nikah Saja (08.00 – 10.00 WIB)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Pesan / Catatan Tambahan (Opsional)</label>
+              <textarea id="rsvp-notes" rows="2" placeholder="Tuliskan catatan jika ada..."></textarea>
+            </div>
+            <p id="rsvp-feedback" class="feedback-msg" style="display:none;"></p>
+            <button type="submit" id="btn-submit-rsvp" class="btn-gold-primary" style="width:100%;">
+              Kirim Konfirmasi Kehadiran
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 5. WEDDING GIFT & KONFIRMASI -->
+      <section id="wedding-gift" class="section-block">
+        <div class="section-header-center">
+          <p class="kicker-bright-gold">TANDA KASIH PERNIKAHAN</p>
+          <h2 class="section-heading">Wedding Gift &amp; Konfirmasi</h2>
+          <p class="section-lead">
+            Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Apabila Anda ingin mengirimkan tanda kasih, dapat melalui rekening berikut disertai konfirmasi pengiriman:
+          </p>
+        </div>
+
+        <div class="two-col-section">
+          <div class="bank-stack">
+            <div class="kraton-card bank-card">
+              <div>
+                <p class="kicker-maroon">Bank Central Asia (BCA)</p>
+                <p class="rekening-num">4560891234</p>
+                <p class="rekening-owner">a.n. Ulfa Azizah</p>
+              </div>
+              <button type="button" class="btn-outline-sm" onclick="copyBankNumber('4560891234', this)">
+                Salin Rekening
+              </button>
+            </div>
+
+            <div class="kraton-card bank-card">
+              <div>
+                <p class="kicker-maroon">Bank Mandiri</p>
+                <p class="rekening-num">1370098765432</p>
+                <p class="rekening-owner">a.n. Dimas</p>
+              </div>
+              <button type="button" class="btn-outline-sm" onclick="copyBankNumber('1370098765432', this)">
+                Salin Rekening
+              </button>
+            </div>
+
+            <div class="kraton-card bank-card">
+              <div>
+                <p class="kicker-maroon">Bank Syariah Indonesia (BSI)</p>
+                <p class="rekening-num">7198234567</p>
+                <p class="rekening-owner">a.n. Ulfa Azizah</p>
+              </div>
+              <button type="button" class="btn-outline-sm" onclick="copyBankNumber('7198234567', this)">
+                Salin Rekening
+              </button>
+            </div>
+
+            <div class="kraton-card">
+              <p class="kicker-maroon">Alamat Pengiriman Kado Fisik</p>
+              <p style="font-weight:700; color:#2B0910; margin-top:4px;">Kediaman Ulfa Azizah &amp; Dimas</p>
+              <p style="font-size:13px; color:#6D343E; margin-top:4px;">
+                Perumahan Griya Permata Asri Blok B4 No. 12, Sleman, Yogyakarta 55281
+              </p>
+            </div>
+          </div>
+
+          <form id="gift-form" class="kraton-form" onsubmit="handleGiftSubmit(event)">
+            <p class="kicker-maroon">KONFIRMASI PENGIRIMAN</p>
+            <h3 style="font-size:22px; color:#2B0910; margin-bottom:14px;">Formulir Konfirmasi Wedding Gift</h3>
+            <div class="form-row">
+              <label>Nama Pengirim</label>
+              <input type="text" id="gift-sender" required />
+            </div>
+            <div class="form-row">
+              <label>Rekening Tujuan / Pengiriman Kado</label>
+              <select id="gift-method">
+                <option value="Bank Central Asia (4560891234)">BCA — 4560891234 (a.n. Ulfa Azizah)</option>
+                <option value="Bank Mandiri (1370098765432)">Mandiri — 1370098765432 (a.n. Dimas)</option>
+                <option value="Bank Syariah Indonesia (7198234567)">BSI — 7198234567 (a.n. Ulfa Azizah)</option>
+                <option value="Pengiriman Kado Fisik">Pengiriman Kado Fisik ke Alamat Rumah</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Nominal Transfer / Jenis Kado</label>
+              <input type="text" id="gift-amount" placeholder="Contoh: Rp 500.000 atau Bedcover" required />
+            </div>
+            <div class="form-row">
+              <label>Pesan / Catatan Konfirmasi</label>
+              <textarea id="gift-message" rows="2" placeholder="Tuliskan pesan singkat..."></textarea>
+            </div>
+            <p id="gift-feedback" class="feedback-msg" style="display:none;"></p>
+            <button type="submit" id="btn-submit-gift" class="btn-gold-primary" style="width:100%;">
+              Kirim Konfirmasi Wedding Gift
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 6. UCAPAN SELAMAT & DOA RESTU (DENGAN BACKGROUND BERBAYANG ID: 1Qipk7crILX40rblYqBwZvCJS-jJgKzcF) -->
+      <section id="ucapan" class="section-block section-with-bg-overlay" style="border-bottom:none;">
+        <div class="section-bg-shadow-wrap" aria-hidden="true">
+          <img
+            id="img-ucapan-bg"
+            src="https://drive.google.com/thumbnail?id=1Qipk7crILX40rblYqBwZvCJS-jJgKzcF&sz=w1000"
+            alt=""
+            decoding="async"
+            class="section-bg-shadow-img pos-ucapan"
+          />
+          <div class="section-bg-shadow-overlay"></div>
+        </div>
+        <div class="two-col-section section-fg-content">
+          <form id="wish-form" class="kraton-form" onsubmit="handleWishSubmit(event)">
+            <p class="kicker-maroon">BUKU TAMU &amp; DOA</p>
+            <h3 style="font-size:24px; color:#2B0910; margin-bottom:12px;">Ucapan Selamat &amp; Doa Restu</h3>
+            <div class="form-row">
+              <label>Nama Pengirim</label>
+              <input type="text" id="wish-sender" required />
+            </div>
+            <div class="form-row">
+              <label>Konfirmasi Kehadiran</label>
+              <select id="wish-status">
+                <option value="Hadir">Hadir</option>
+                <option value="Berhalangan">Berhalangan Hadir</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Ucapan &amp; Doa Restu</label>
+              <textarea id="wish-content" rows="4" placeholder="Selamat menempuh hidup baru Ulfa & Dimas..." required></textarea>
+            </div>
+            <p id="wish-feedback" class="feedback-msg" style="display:none;"></p>
+            <button type="submit" id="btn-submit-wish" class="btn-gold-primary" style="width:100%;">
+              Kirim Ucapan Selamat
+            </button>
+          </form>
+
+          <div>
+            <p class="kicker-bright-gold">DOA RESTU KELUARGA &amp; SAHABAT</p>
+            <h3 class="section-heading" style="font-size:28px; margin-bottom:6px;">Doa &amp; Ucapan Tamu</h3>
+            <p class="section-lead" style="margin-bottom:16px;">
+              Ucapan selamat dari keluarga, sahabat, dan rekan:
+            </p>
+            <div id="wishes-list" class="wishes-feed"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL LIGHTBOX GALERI DENGAN NAVIGASI SEBELUMNYA / BERIKUTNYA -->
+    <div id="gallery-modal" class="modal-backdrop" style="display:none;" onclick="closeGalleryModal()">
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <span id="modal-category" class="kicker-maroon">GALERI FOTO</span>
+          <button type="button" class="btn-outline-sm" onclick="closeGalleryModal()">Tutup ✕</button>
+        </div>
+        <div class="modal-img-wrap">
+          <img id="modal-img" src="" alt="Pratinjau Foto Galeri" class="modal-full-img" />
+        </div>
+        <div class="modal-body" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
+          <div>
+            <h3 id="modal-title" style="font-size:24px; color:#2B0910; margin-bottom:4px;">-</h3>
+            <p id="modal-story" style="font-size:13px; color:#6D343E; line-height:1.6;">-</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="btn-outline-sm" onclick="stepGalleryModal(-1)">← Sebelumnya</button>
+            <button type="button" class="btn-outline-sm" onclick="stepGalleryModal(1)">Berikutnya →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>The Wedding of Ulfa Azizah &amp; Dimas · Minggu, 14 Februari 2027</p>
+    </footer>
+  </div>
+
+  <!-- Mengambil daftar DRIVE_PHOTO_IDS langsung dari Code.gs -->
+  <script>
+    window.CODE_GS_DRIVE_IDS = <?!= typeof drivePhotoIdsJson !== 'undefined' ? drivePhotoIdsJson : 'null' ?>;
+  </script>
+  <?!= include('JavaScript'); ?>
+</body>
+</html>

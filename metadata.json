@@ -1,0 +1,6 @@
+{
+  "name": "Pawiwahan Agung — Undangan Pernikahan Jawa & Studio Google Apps Script",
+  "description": "Website undangan pernikahan adat Jawa Keraton Klasik interaktif dengan akses PIN tamu otomatis, musik gamelan, galeri foto, RSVP, konfirmasi wedding gift, ucapan selamat, serta generator kode Google Apps Script (Code.gs, Index.html, Stylesheet.html, JavaScript.html).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

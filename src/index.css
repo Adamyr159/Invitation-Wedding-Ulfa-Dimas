@@ -1,0 +1,704 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-obsidian: #0F0B08;
+    --bg-sogan: #1A130E;
+    --bg-card: #241A12;
+    --text-ivory: #F7F2E7;
+    --text-sand: #D5C7B4;
+    --text-muted: #9A8873;
+    --accent-gold: #D4AF37;
+    --accent-gold-bright: #F3E5AB;
+    --accent-copper: #B87333;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #26080E;
+    color: #FAF3E8;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background-color: #26080E;
+    color: #FAF3E8;
+    overflow-x: hidden;
+    selection-background-color: #D4AF37;
+    selection-color: #2B0910;
+  }
+
+  h1, h2, h3, h4, .font-serif-jawa {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-mono-code {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Subtle Kawung & Parang Geometric SVG Pattern Overlay */
+.bg-kawung-pattern {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.11) 1px, transparent 1px),
+    radial-gradient(rgba(212, 175, 55, 0.06) 1px, var(--theme-bg, #26080E) 1px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+/* ============================================================================
+   TEMA RESMI (OPSI B): ROYAL MAROON & WARM IVORY CREAM CLASSIC
+   Latar Luar: Royal Maroon (#26080E)
+   Permukaan Card: Warm Ivory Cream (#FAF3E8) & Soft Sand Cream (#F1E5D3)
+   Teks Utama Card: Deep Maroon (#2B0910) & Rose Maroon (#6D343E)
+   Aksen & Bingkai: Crimson Maroon (#8B1C29) & Champagne Gold (#D4AF37)
+   ============================================================================ */
+.theme-dark-jawa {
+  --theme-bg: #0D0A08;
+  --theme-card: #15100C;
+  --theme-inner: #0D0A08;
+  --theme-text-main: #F5EFE6;
+  --theme-text-sub: #B8A898;
+  --theme-gold: #D4AF37;
+  --theme-gold-light: #F3E5AB;
+  --theme-border: rgba(212, 175, 55, 0.35);
+}
+
+.theme-maroon-velvet {
+  --theme-bg: #1B0609;
+  --theme-card: #2E0B11;
+  --theme-inner: #21070B;
+  --theme-text-main: #FAF3E8;
+  --theme-text-sub: #DFC3C7;
+  --theme-gold: #D4AF37;
+  --theme-gold-light: #F5E6B3;
+  --theme-border: rgba(212, 175, 55, 0.48);
+}
+
+.theme-maroon-ivory {
+  --theme-bg: #26080E;
+  --theme-card: #FAF3E8;
+  --theme-inner: #F1E5D3;
+  --theme-text-main: #2B0910;
+  --theme-text-sub: #6D343E;
+  --theme-gold: #9E6B16;
+  --theme-gold-light: #4A101A;
+  --theme-border: rgba(180, 130, 45, 0.55);
+}
+
+.theme-maroon-ivory.app-theme-root {
+  background-color: #26080E !important;
+  color: #FAF3E8 !important;
+}
+
+/* Permukaan Card Utama -> Warm Ivory Cream (#FAF3E8) */
+.theme-maroon-ivory .bg-\[\#15100C\] {
+  background-color: #FAF3E8 !important;
+  color: #2B0910 !important;
+  border-color: rgba(184, 134, 11, 0.55) !important;
+  box-shadow: 0 20px 55px rgba(15, 2, 5, 0.58);
+}
+
+/* Teks di dalam Card Warm Ivory -> Deep Maroon & Rose Maroon */
+.theme-maroon-ivory .bg-\[\#15100C\] .text-\[\#F5EFE6\] {
+  color: #2B0910 !important;
+}
+.theme-maroon-ivory .bg-\[\#15100C\] .text-\[\#B8A898\],
+.theme-maroon-ivory .bg-\[\#15100C\] .text-\[\#9A8873\] {
+  color: #6D343E !important;
+}
+.theme-maroon-ivory .bg-\[\#15100C\] .text-\[\#D4AF37\] {
+  color: #8B1C29 !important;
+}
+.theme-maroon-ivory .bg-\[\#15100C\] .text-\[\#F3E5AB\] {
+  color: #5C121B !important;
+}
+
+/* Sub-box, Input, Textarea, Select di dalam Card Warm Ivory -> Soft Cream (#F1E5D3) */
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#0D0A08\],
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#0D0A08\]\/90,
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#0D0A08\]\/80 {
+  background-color: #F1E5D3 !important;
+  color: #2B0910 !important;
+  border-color: rgba(139, 28, 41, 0.32) !important;
+}
+
+/* Tombol CTA Utama di dalam Card Warm Ivory -> Crimson Maroon & Gold */
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#D4AF37\] {
+  background: linear-gradient(135deg, #7A1521 0%, #8B1C29 55%, #5C0F18 100%) !important;
+  color: #FAF3E8 !important;
+  border: 1px solid rgba(212, 175, 55, 0.65) !important;
+  box-shadow: 0 8px 24px rgba(139, 28, 41, 0.35) !important;
+}
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#D4AF37\] .text-\[\#0D0A08\],
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#D4AF37\] span,
+.theme-maroon-ivory .bg-\[\#15100C\] .bg-\[\#D4AF37\] svg {
+  color: #FAF3E8 !important;
+}
+
+/* Header & Floating Navigation tetap Royal Maroon pekat dengan aksen Champagne Gold */
+.theme-maroon-ivory header.bg-\[\#0D0A08\]\/95 {
+  background-color: rgba(38, 8, 14, 0.96) !important;
+  border-bottom-color: rgba(212, 175, 55, 0.32) !important;
+}
+.theme-maroon-ivory footer.bg-\[\#15100C\] {
+  background-color: #1D060A !important;
+  color: #FAF3E8 !important;
+}
+.theme-maroon-ivory footer.bg-\[\#15100C\] .text-\[\#F5EFE6\] {
+  color: #FAF3E8 !important;
+}
+.theme-maroon-ivory footer.bg-\[\#15100C\] .text-\[\#B8A898\] {
+  color: #DFC3C7 !important;
+}
+.theme-maroon-ivory footer.bg-\[\#15100C\] .text-\[\#D4AF37\] {
+  color: #D4AF37 !important;
+}
+
+/* Ornate Double Frame Border */
+.kraton-frame {
+  border: 1px solid rgba(212, 175, 55, 0.36);
+  box-shadow:
+    inset 0 0 0 3px #140E0A,
+    inset 0 0 0 4px rgba(212, 175, 55, 0.16),
+    0 20px 60px rgba(0, 0, 0, 0.85);
+}
+
+.kraton-gold-gradient-text {
+  background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA7C11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kraton-gold-btn {
+  background: linear-gradient(135deg, #E5C158 0%, #D4AF37 55%, #B5891C 100%);
+  color: #140E0A;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.28);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kraton-gold-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ============================================================================
+   STAGGERED ENTRANCE / CASCADE ANIMATION SYSTEM (60 FPS GPU-ACCELERATED)
+   Easing: cubic-bezier(0.16, 1, 0.3, 1) | Properties: transform & opacity only
+   ============================================================================ */
+
+/* --- KEYFRAMES FASE 1: MODAL COVER PEMBUKA --- */
+
+/* [0.0s - 1.2s] Background Aula Joglo: fade-in + micro-zoom (scale(1.04) -> scale(1)) */
+@keyframes coverBgJogloIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(1.04, 1.04, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* [0.3s - 0.9s] Ornamen Border Sudut Emas: fade-in di 4 sudut layar */
+@keyframes cornerOrnamentIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.94, 0.94, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* [0.6s - 1.2s] Container Card Kubah/Arch Tengah: translateY(25px) -> translateY(0) + fade-in */
+@keyframes archContainerIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 25px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* [0.9s - 1.4s] Foto Mempelai & Badge Tanggal: pop/scale-up halus (scale(0.92) -> scale(1)) */
+@keyframes archPhotoPopIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.92, 0.92, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* [1.2s - 1.6s] Teks Nama Mempelai: fade-in bergeser ke atas (translateY(15px) -> 0) */
+@keyframes coupleNamesSlideUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 15px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* [1.5s - 1.9s] Tombol "Buka Surat Undangan": fade-in terakhir */
+@keyframes ctaButtonFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* [1.9s+] Denyut lembut permanen (subtle pulse/glow) menggunakan transform & opacity */
+@keyframes ctaSubtlePulse {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.028, 1.028, 1);
+  }
+}
+
+@keyframes ctaGlowRing {
+  0%, 100% {
+    opacity: 0.22;
+    transform: scale3d(0.98, 0.98, 1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale3d(1.04, 1.08, 1);
+  }
+}
+
+/* --- KEYFRAMES FASE 2: TRANSISI BUKA UNDANGAN (~0.5s) --- */
+@keyframes modalCoverExit {
+  0% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(0.94, 0.94, 1);
+  }
+}
+
+/* --- KEYFRAMES FASE 3: SECTION 01 (PELAMINAN SAPAAN) --- */
+
+/* [0.1s] Foto Pasangan (Kolom Kanan): translateX(30px) -> 0 + fade-in */
+@keyframes heroRightPhotoIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* [0.4s] Teks Nama Mempelai & Sapaan Tamu (Kolom Kiri): translateX(-25px) -> 0 + fade-in */
+@keyframes heroLeftGreetingIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(-25px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* [0.7s] Kutipan Ayat & Tombol CTA (RSVP / Gift): translateY(20px) -> 0 + fade-in */
+@keyframes heroQuoteCtaIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* [1.0s] Countdown Bar & Floating Nav Menu: muncul bertahap sebagai penutup antarmuka */
+@keyframes heroChromeReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* --- UTILITY CLASSES FASE 1 --- */
+.anim-phase1-bg {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: coverBgJogloIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
+}
+
+.anim-phase1-corners {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: cornerOrnamentIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.anim-phase1-card {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: archContainerIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.anim-phase1-photo {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: archPhotoPopIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+
+.anim-phase1-names {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: coupleNamesSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.anim-phase1-cta {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation:
+    ctaButtonFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards,
+    ctaSubtlePulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) 1.95s infinite;
+}
+
+.anim-phase1-cta-glow {
+  will-change: transform, opacity;
+  animation: ctaGlowRing 2.8s cubic-bezier(0.16, 1, 0.3, 1) 1.95s infinite;
+}
+
+/* --- UTILITY CLASS FASE 2 --- */
+.anim-phase2-exit {
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: modalCoverExit 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
+}
+
+/* --- UTILITY CLASSES FASE 3 --- */
+.anim-phase3-photo-right {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: heroRightPhotoIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.anim-phase3-text-left {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: heroLeftGreetingIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.anim-phase3-quote-cta {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: heroQuoteCtaIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+}
+
+.anim-phase3-chrome {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: heroChromeReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+}
+
+/* Floating Golden Fireflies / Petals in the Journey World */
+@keyframes floatFirefly {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(18px, -32px, 0) scale(1.25);
+    opacity: 0.85;
+  }
+}
+
+.journey-firefly {
+  animation: floatFirefly 6s ease-in-out infinite;
+}
+
+/* ============================================================================
+   FASE GERBANG AGUNG & DUNIA SAKURA BERLAPIS (SETELAH PIN DIINPUT)
+   1. Pintu Gerbang Agung Kiri & Kanan Membuka 3D (rotateY)
+   2. Layer Canopy & Ranting Bunga Sakura Mekar & Melambai
+   3. Layer Hujan Kelopak Bunga Sakura 3D (Foreground, Midground, Background)
+   4. Layer Bingkai Pengantin Berlapis + Halo Mandala Emas Berputar
+   ============================================================================ */
+.gate-3d-stage {
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+
+@keyframes gateLeftSwingOpen {
+  0% {
+    transform: rotateY(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  12% {
+    transform: rotateY(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(72deg) translate3d(-96%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes gateRightSwingOpen {
+  0% {
+    transform: rotateY(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  12% {
+    transform: rotateY(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(-72deg) translate3d(96%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes gateSeamLightBurst {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.8, 1);
+  }
+  15% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.95;
+    transform: scale3d(1.35, 1.15, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(2.5, 1.6, 1);
+  }
+}
+
+@keyframes worldHallCameraGlide {
+  0% {
+    transform: scale3d(1.12, 1.12, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes mandalaHaloRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes mandalaHaloReverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+@keyframes bridalFrameGrandIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale3d(0.88, 0.88, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes sakuraClusterBloom {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.4, 0.4, 1) rotate(-14deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale3d(1.08, 1.08, 1) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) rotate(0deg);
+  }
+}
+
+@keyframes sakuraBranchSway {
+  0%, 100% {
+    transform: rotate(0deg) scale3d(1, 1, 1);
+  }
+  50% {
+    transform: rotate(2.8deg) scale3d(1.02, 1.02, 1);
+  }
+}
+
+@keyframes sakuraPetalFallA {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg) rotateX(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.95;
+  }
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(95px, 110vh, 0) rotate(340deg) rotateX(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sakuraPetalFallB {
+  0% {
+    transform: translate3d(0, -15vh, 0) rotate(25deg) rotateY(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-110px, 112vh, 0) rotate(-310deg) rotateY(220deg);
+    opacity: 0;
+  }
+}
+
+@keyframes glassShimmerSweep {
+  0% {
+    transform: translate3d(-140%, 0, 0) skewX(-22deg);
+  }
+  100% {
+    transform: translate3d(240%, 0, 0) skewX(-22deg);
+  }
+}
+
+.anim-gate-door-left-open {
+  transform-origin: left center;
+  will-change: transform, opacity;
+  animation: gateLeftSwingOpen 3.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+.anim-gate-door-right-open {
+  transform-origin: right center;
+  will-change: transform, opacity;
+  animation: gateRightSwingOpen 3.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+.anim-gate-light-burst {
+  will-change: transform, opacity;
+  animation: gateSeamLightBurst 2.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+.anim-world-hall-glide {
+  will-change: transform, opacity;
+  animation: worldHallCameraGlide 3.8s cubic-bezier(0.22, 1, 0.36, 1) 0s forwards;
+}
+
+.anim-bridal-frame-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: bridalFrameGrandIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
+}
+
+.anim-sakura-cluster-1 {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: sakuraClusterBloom 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
+}
+
+.anim-sakura-cluster-2 {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: sakuraClusterBloom 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+}
+
+.anim-sakura-cluster-3 {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: sakuraClusterBloom 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.45s forwards;
+}
+
+.anim-guest-scroll-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: coupleNamesSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.35s forwards;
+}
+
+.anim-mandala-spin {
+  animation: mandalaHaloRotate 28s linear infinite;
+}
+
+.anim-mandala-spin-reverse {
+  animation: mandalaHaloReverse 36s linear infinite;
+}
+
+.anim-sakura-sway {
+  animation: sakuraBranchSway 5.5s ease-in-out infinite;
+}
+
+.anim-shimmer-sweep {
+  animation: glassShimmerSweep 2.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s infinite;
+}
+
+.sakura-petal-a {
+  will-change: transform, opacity;
+  animation: sakuraPetalFallA var(--fall-dur, 6s) linear var(--fall-delay, 0s) infinite;
+}
+
+.sakura-petal-b {
+  will-change: transform, opacity;
+  animation: sakuraPetalFallB var(--fall-dur, 7s) linear var(--fall-delay, 0s) infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #26080E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.45);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.7);
+}

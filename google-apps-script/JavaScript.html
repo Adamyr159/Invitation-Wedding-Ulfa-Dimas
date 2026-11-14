@@ -1,0 +1,686 @@
+<script>
+  /**
+   * ============================================================================
+   * THE WEDDING OF ULFA AZIZAH & DIMAS — JAVASCRIPT (JavaScript.html)
+   * ============================================================================
+   * - Gambar 1 (Cover PIN): 11U5mxsda2pUewOnUqs7p8ChCxcG8d32A
+   * - Gambar 2 (Hero Utama Section 1): 1eTjiCq_kGE_c7pG6mqejL12iNokL7i8g
+   * - Begitu Gambar 2 selesai di-load, seluruh foto Galeri langsung di-preload
+   *   secara otomatis di background dengan resolusi optimal (w600) agar ringan
+   *   dan sudah tampil penuh ketika tamu men-scroll ke bawah.
+   * - Lagu pengiring: Christina Perri - A Thousand Years (otomatis berputar saat
+   *   gerbang dibuka, tanpa tombol menyala/matikan).
+   * ============================================================================
+   */
+  const DEFAULT_DRIVE_PHOTO_IDS = {
+    gedungPelaminan: '1PM-8RFPofVmOZYpsXB1R4lceNVBrNqip',
+    coverPin: '11U5mxsda2pUewOnUqs7p8ChCxcG8d32A',
+    heroUtama: '1eTjiCq_kGE_c7pG6mqejL12iNokL7i8g',
+    bgRsvp: '1Tw8kQBOkkJnjH5loQKd0kWyHRhq0EGIb',
+    bgUcapan: '1Qipk7crILX40rblYqBwZvCJS-jJgKzcF',
+    mempelaiPria: '1qfq7jIPx7ZrVXFJpjJaZF-7jOb2NoXVc',
+    mempelaiWanita: '1y9XU1vd5QsGszWf51DFTnfrRedOJSZeY',
+    keduaMempelai: [
+      '1HkIaVcpXyOWLHAuYxOX-oYjO4A17kmQd',
+      '1y1xhfQwY_APLzsJ41iLpKE406Oqll4NG',
+      '1Tw8kQBOkkJnjH5loQKd0kWyHRhq0EGIb',
+      '1MRaIdTGU3UQexo11HO2r7HFNSeWJQFko',
+      '1FghtVHHPnBhh1syJhTj_tNnR_PNb_3cy',
+      '1eTjiCq_kGE_c7pG6mqejL12iNokL7i8g',
+      '1zIE5RHN5-kvCTCf3WKgp288ESs2675-Y',
+      '1ofdjvCj28avtxaLXMScoTiQ1biPEKKxx',
+      '1P7gdLYYzFG2EqoMhOtbg5bnd3zvu5ZWg',
+      '11U5mxsda2pUewOnUqs7p8ChCxcG8d32A',
+      '1jKctamd88yiYMXWIrjMc-MtoFHcp3Ro0',
+      '1CJWNQ7f0dGhXDw_jrjcDy9oJaZhnPLSQ',
+      '1KEY8pv0weS22GhmCNy5LY04y5JW3T9Gc',
+      '1Qipk7crILX40rblYqBwZvCJS-jJgKzcF'
+    ]
+  };
+
+  const DRIVE_IDS = (typeof window !== 'undefined' && window.CODE_GS_DRIVE_IDS)
+    ? window.CODE_GS_DRIVE_IDS
+    : DEFAULT_DRIVE_PHOTO_IDS;
+
+  /**
+   * Menghasilkan URL thumbnail Google Drive dengan ukuran bertingkat (tiered size)
+   * agar website sangat ringan dan cepat dimuat:
+   * - 'w600' (~45KB) untuk grid galeri
+   * - 'w800' (~70KB) untuk cover PIN & kartu profil mempelai
+   * - 'w1000' (~110KB) untuk foto Hero utama & background Joglo
+   * - 'w1200' untuk tampilan penuh saat foto diklik di Lightbox
+   */
+  function getDriveDirectUrl(driveIdOrUrl, size) {
+    const sz = size || 'w600';
+    if (!driveIdOrUrl) return '';
+    if (driveIdOrUrl.indexOf('http') === 0 || driveIdOrUrl.indexOf('data:') === 0) {
+      return driveIdOrUrl;
+    }
+    return 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(driveIdOrUrl.trim()) + '&sz=' + sz;
+  }
+
+  // URL Lagu "A Thousand Years" — Christina Perri (Primary & Backup)
+  const THOUSAND_YEARS_PRIMARY_URL =
+    'https://archive.org/download/christina-perri-a-thousand-years_20260624/Christina%20Perri%20-%20A%20Thousand%20Years.mp3';
+  const THOUSAND_YEARS_BACKUP_URL =
+    'https://archive.org/download/athousandyearschristinaperri_202003/A%20Thousand%20Years%20-%20Christina%20Perri.mp3';
+
+  // Susun seluruh daftar foto Galeri secara otomatis dari DRIVE_PHOTO_IDS di Code.gs
+  function buildGalleryItemsFromDriveIds(idsConfig) {
+    const items = [];
+    const coupleIds = (idsConfig && Array.isArray(idsConfig.keduaMempelai))
+      ? idsConfig.keduaMempelai
+      : DEFAULT_DRIVE_PHOTO_IDS.keduaMempelai;
+
+    coupleIds.forEach(function(driveId, idx) {
+      items.push({
+        driveId: driveId,
+        category: idx === 0 ? 'Potret Utama · Kedua Mempelai' : 'Galeri Pre-Wedding · Kedua Mempelai',
+        title: 'Ulfa Azizah & Dimas · Potret ' + String(idx + 1).padStart(2, '0'),
+        imageUrl: getDriveDirectUrl(driveId, 'w600'),
+        fullImageUrl: getDriveDirectUrl(driveId, 'w1200'),
+        story: 'Potret kebersamaan Ulfa Azizah & Dimas dalam sesi foto pre-wedding adat Jawa klasik.'
+      });
+    });
+
+    if (idsConfig && idsConfig.mempelaiWanita) {
+      items.push({
+        driveId: idsConfig.mempelaiWanita,
+        category: 'Mempelai Wanita',
+        title: 'Pesona Anggun Ulfa Azizah',
+        imageUrl: getDriveDirectUrl(idsConfig.mempelaiWanita, 'w600'),
+        fullImageUrl: getDriveDirectUrl(idsConfig.mempelaiWanita, 'w1200'),
+        story: 'Potret anggun mempelai wanita Ulfa Azizah, S.Psi. dalam balutan busana pengantin klasik.'
+      });
+    }
+
+    if (idsConfig && idsConfig.mempelaiPria) {
+      items.push({
+        driveId: idsConfig.mempelaiPria,
+        category: 'Mempelai Pria',
+        title: 'Keteguhan Hati Dimas',
+        imageUrl: getDriveDirectUrl(idsConfig.mempelaiPria, 'w600'),
+        fullImageUrl: getDriveDirectUrl(idsConfig.mempelaiPria, 'w1200'),
+        story: 'Potret mempelai pria Dimas, S.Kom. dalam balutan busana adat Jawa klasik.'
+      });
+    }
+
+    return items;
+  }
+
+  let GALLERY_ITEMS = buildGalleryItemsFromDriveIds(DRIVE_IDS);
+  let activeGalleryIndex = 0;
+  let galleryPreloaded = false;
+
+  const FALLBACK_GUESTS = {
+    '123456': {
+      pin: '123456',
+      namaTamu: 'Bapak Budi Santoso & Keluarga',
+      gelarAtauInstansi: 'Jakarta Selatan',
+      kategori: 'VIP / Kehormatan',
+      kuotaMaksimal: 3
+    },
+    'ULFA01': {
+      pin: 'ULFA01',
+      namaTamu: 'Dinda Permatasari & Partner',
+      gelarAtauInstansi: 'Sahabat Mempelai Wanita',
+      kategori: 'Sahabat & Kolega',
+      kuotaMaksimal: 2
+    },
+    'ULFA02': {
+      pin: 'ULFA02',
+      namaTamu: 'Keluarga Besar Bapak H. Hendra Gunawan',
+      gelarAtauInstansi: 'Bandung',
+      kategori: 'Keluarga Besar',
+      kuotaMaksimal: 4
+    },
+    'DIMAS1': {
+      pin: 'DIMAS1',
+      namaTamu: 'Rizky Pratama & Istri',
+      gelarAtauInstansi: 'Rekan Kerja Mempelai Pria',
+      kategori: 'Sahabat & Kolega',
+      kuotaMaksimal: 2
+    },
+    'INDRA1': {
+      pin: 'INDRA1',
+      namaTamu: 'Rizky Pratama & Istri',
+      gelarAtauInstansi: 'Rekan Kerja Mempelai Pria',
+      kategori: 'Sahabat & Kolega',
+      kuotaMaksimal: 2
+    }
+  };
+
+  let activeGuest = null;
+  let audioPlayer = null;
+  let audioCtx = null;
+  let synthTimer = null;
+  let musicPlaying = false;
+  let usingFallbackVocalSynth = false;
+  let triedBackupAudio = false;
+  let stepIndex = 0;
+
+  let gateOpenTimer = null;
+
+  const JOURNEY_LABELS = [
+    '01 · Pelaminan Sapaan',
+    '02 · Mempelai & Acara',
+    '03 · Galeri Momen',
+    '04 · Konfirmasi RSVP',
+    '05 · Tanda Kasih',
+    '06 · Doa & Restu'
+  ];
+
+  function renderGalleryGrid() {
+    const grid = document.getElementById('gallery-bento-grid');
+    if (!grid) return;
+    grid.innerHTML = GALLERY_ITEMS.map(function(item, index) {
+      const wideClass = (index === 0 || index === 5 || index === 10) ? ' tile-wide' : '';
+      return (
+        '<div class="gallery-tile' + wideClass + '" onclick="openGalleryModal(' + index + ')">' +
+          '<img src="' + item.imageUrl + '" alt="' + item.title + '" class="card-bg-img" loading="eager" decoding="async" />' +
+          '<div class="card-bg-scrim"></div>' +
+          '<div class="tile-content">' +
+            '<p class="kicker-bright-gold">' + item.category + '</p>' +
+            '<h3>' + item.title + '</h3>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  /**
+   * Preload seluruh foto Profil Mempelai & Galeri secara bertahap (batch 3 foto)
+   * tepat setelah Gambar 2 (Hero Utama) selesai dimuat, sehingga saat user scroll
+   * ke bagian Galeri semua foto sudah siap tampil tanpa membebani jaringan sekaligus.
+   */
+  function preloadAllGalleryAfterHero(idsConfig) {
+    if (galleryPreloaded) return;
+    galleryPreloaded = true;
+
+    const urls = [];
+    if (idsConfig && idsConfig.mempelaiWanita) {
+      urls.push(getDriveDirectUrl(idsConfig.mempelaiWanita, 'w800'));
+    }
+    if (idsConfig && idsConfig.mempelaiPria) {
+      urls.push(getDriveDirectUrl(idsConfig.mempelaiPria, 'w800'));
+    }
+    if (idsConfig && idsConfig.bgRsvp) {
+      urls.push(getDriveDirectUrl(idsConfig.bgRsvp, 'w1000'));
+    }
+    if (idsConfig && idsConfig.bgUcapan) {
+      urls.push(getDriveDirectUrl(idsConfig.bgUcapan, 'w1000'));
+    }
+    GALLERY_ITEMS.forEach(function(item) {
+      if (item && item.imageUrl) urls.push(item.imageUrl);
+    });
+
+    let cursor = 0;
+    function loadNextBatch() {
+      const batch = urls.slice(cursor, cursor + 3);
+      cursor += 3;
+      if (!batch.length) return;
+
+      let doneCount = 0;
+      function onOneFinished() {
+        doneCount++;
+        if (doneCount >= batch.length) {
+          setTimeout(loadNextBatch, 60);
+        }
+      }
+
+      batch.forEach(function(u) {
+        const preImg = new Image();
+        preImg.decoding = 'async';
+        preImg.onload = onOneFinished;
+        preImg.onerror = onOneFinished;
+        preImg.src = u;
+      });
+    }
+
+    loadNextBatch();
+  }
+
+  function applyDrivePhotoIds(idsConfig) {
+    const setImg = function(id, url) {
+      const el = document.getElementById(id);
+      if (!el || !url) return;
+      el.src = url;
+    };
+
+    const hallDriveUrl = getDriveDirectUrl(idsConfig.gedungPelaminan, 'w1000');
+    const coverPinDriveUrl = getDriveDirectUrl(idsConfig.coverPin, 'w800');
+    const coupleDriveUrl = getDriveDirectUrl(idsConfig.heroUtama, 'w1000');
+    const brideDriveUrl = getDriveDirectUrl(idsConfig.mempelaiWanita, 'w800');
+    const groomDriveUrl = getDriveDirectUrl(idsConfig.mempelaiPria, 'w800');
+    const rsvpBgDriveUrl = getDriveDirectUrl(idsConfig.bgRsvp || DEFAULT_DRIVE_PHOTO_IDS.bgRsvp, 'w1000');
+    const ucapanBgDriveUrl = getDriveDirectUrl(idsConfig.bgUcapan || DEFAULT_DRIVE_PHOTO_IDS.bgUcapan, 'w1000');
+
+    GALLERY_ITEMS = buildGalleryItemsFromDriveIds(idsConfig);
+    renderGalleryGrid();
+
+    setImg('img-gate-bg', hallDriveUrl);
+    setImg('img-main-joglo-bg', hallDriveUrl);
+    setImg('img-gate-arch', coverPinDriveUrl);
+    setImg('img-bride-profile', brideDriveUrl);
+    setImg('img-groom-profile', groomDriveUrl);
+    setImg('img-rsvp-bg', rsvpBgDriveUrl);
+    setImg('img-ucapan-bg', ucapanBgDriveUrl);
+
+    // Begitu Gambar 2 (#img-hero-main) selesai dimuat, langsung preload seluruh Galeri!
+    const heroImgEl = document.getElementById('img-hero-main');
+    if (heroImgEl) {
+      heroImgEl.onload = function() {
+        preloadAllGalleryAfterHero(idsConfig);
+      };
+      heroImgEl.onerror = function() {
+        preloadAllGalleryAfterHero(idsConfig);
+      };
+      if (coupleDriveUrl) {
+        heroImgEl.src = coupleDriveUrl;
+      }
+      if (heroImgEl.complete) {
+        preloadAllGalleryAfterHero(idsConfig);
+      }
+    }
+  }
+
+  // Terapkan semua ID Drive dari Code.gs saat halaman dimuat
+  window.addEventListener('DOMContentLoaded', function() {
+    applyDrivePhotoIds(DRIVE_IDS);
+
+    if (typeof google !== 'undefined' && google.script && google.script.run && !window.CODE_GS_DRIVE_IDS) {
+      google.script.run
+        .withSuccessHandler(function(serverIds) {
+          if (serverIds) applyDrivePhotoIds(serverIds);
+        })
+        .getDrivePhotoConfig();
+    }
+
+    initJourneyScrollTracker();
+  });
+
+  function replayCoverCascade() {
+    if (gateOpenTimer) clearTimeout(gateOpenTimer);
+    hidePinInputBox();
+    const centerCard = document.getElementById('pin-gate-center-card');
+    const doors = document.getElementById('royal-gate-doors');
+    if (centerCard) centerCard.style.display = 'block';
+    if (doors) doors.classList.remove('is-opening');
+  }
+
+  function showPinInputBox() {
+    // Preload lagu "A Thousand Years" saat tamu klik tombol pertama
+    preloadWeddingMusic();
+    document.getElementById('gate-step-1').style.display = 'none';
+    document.getElementById('gate-step-2').style.display = 'block';
+    const input = document.getElementById('pin-input');
+    if (input) input.focus();
+  }
+
+  function hidePinInputBox() {
+    document.getElementById('gate-step-2').style.display = 'none';
+    document.getElementById('gate-step-1').style.display = 'block';
+    document.getElementById('pin-error').style.display = 'none';
+  }
+
+  // 2. Verifikasi PIN ke Server Google Apps Script (Code.gs)
+  function handleVerifyPin(e) {
+    if (e) e.preventDefault();
+    const input = document.getElementById('pin-input');
+    const errEl = document.getElementById('pin-error');
+    const btn = document.getElementById('btn-verify-pin');
+    const pinVal = String(input.value || '').trim().toUpperCase();
+
+    if (!pinVal) {
+      errEl.textContent = 'Silakan masukkan kode PIN undangan Anda terlebih dahulu.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    errEl.style.display = 'none';
+    btn.textContent = 'Memeriksa Kode PIN...';
+
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run
+        .withSuccessHandler(onPinVerifiedResponse)
+        .withFailureHandler(function(err) {
+          btn.textContent = 'Buka Gerbang Undangan ➔';
+          errEl.textContent = 'Kendala koneksi: ' + err.message;
+          errEl.style.display = 'block';
+        })
+        .verifyGuestPin(pinVal);
+    } else {
+      const fallback = FALLBACK_GUESTS[pinVal];
+      if (fallback) {
+        onPinVerifiedResponse({
+          success: true,
+          guest: fallback,
+          wishes: [
+            {
+              timestamp: 'Baru saja · WIB',
+              pin: '123456',
+              namaPengirim: 'Bapak Budi Santoso & Keluarga',
+              statusKehadiran: 'Hadir',
+              isiUcapan: 'Selamat menempuh hidup baru untuk Ulfa Azizah dan Dimas. Semoga menjadi keluarga sakinah, mawaddah, warahmah.'
+            }
+          ]
+        });
+      } else {
+        onPinVerifiedResponse({
+          success: false,
+          message: 'Kode PIN tidak ditemukan. Pastikan kode PIN sesuai dengan undangan Anda.'
+        });
+      }
+    }
+  }
+
+  function onPinVerifiedResponse(res) {
+    const btn = document.getElementById('btn-verify-pin');
+    const errEl = document.getElementById('pin-error');
+    btn.textContent = 'Buka Gerbang Undangan ➔';
+
+    if (!res || !res.success) {
+      errEl.textContent = (res && res.message) || 'Kode PIN tidak ditemukan.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    activeGuest = res.guest;
+    populateGuestIdentity(activeGuest);
+    renderWishesFeed(res.wishes || []);
+
+    // Langsung putar lagu "A Thousand Years" & tampilkan Halaman Utama di belakang Pintu Gerbang Agung 3D!
+    startWeddingMusic();
+    document.getElementById('invitation-wrapper').style.display = 'block';
+    preloadAllGalleryAfterHero(DRIVE_IDS);
+    startCountdownTimer('2027-02-14T08:00:00+07:00');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    const gateEl = document.getElementById('pin-gate');
+    const bgLayer = document.getElementById('gate-bg-layer');
+    const centerCard = document.getElementById('pin-gate-center-card');
+    const doors = document.getElementById('royal-gate-doors');
+
+    if (gateEl) {
+      gateEl.style.background = 'transparent';
+      gateEl.style.pointerEvents = 'none';
+    }
+    if (bgLayer) bgLayer.style.opacity = '0';
+    if (centerCard) {
+      centerCard.classList.remove('anim-phase1-card');
+      centerCard.classList.add('anim-phase2-exit');
+    }
+    if (doors) doors.classList.add('is-opening');
+
+    // Setelah daun pintu gerbang 3D selesai berayun terbuka secara mulus (~3.65 detik), lepaskan overlay gerbang sepenuhnya
+    gateOpenTimer = setTimeout(function() {
+      if (gateEl) {
+        gateEl.style.display = 'none';
+        gateEl.style.background = '#26080E';
+        gateEl.style.pointerEvents = 'auto';
+      }
+      if (bgLayer) bgLayer.style.opacity = '1';
+      if (centerCard) {
+        centerCard.classList.remove('anim-phase2-exit');
+        centerCard.classList.add('anim-phase1-card');
+        centerCard.style.display = 'block';
+      }
+      if (doors) doors.classList.remove('is-opening');
+    }, 3700);
+  }
+
+  // Pelacak Scroll Dunia Perjalanan (Kompas Perjalanan Mengikuti Saat Tamu Scroll)
+  function initJourneyScrollTracker() {
+    window.addEventListener('scroll', function() {
+      const y = window.scrollY || window.pageYOffset || 0;
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const pct = Math.min(100, Math.max(0, (y / maxScroll) * 100));
+
+      const stopIdx = Math.min(
+        JOURNEY_LABELS.length - 1,
+        Math.floor((pct / 100) * JOURNEY_LABELS.length)
+      );
+      const badge = document.getElementById('journey-current-badge');
+      if (badge) badge.textContent = JOURNEY_LABELS[stopIdx];
+
+      const stopLinks = document.querySelectorAll('.j-stop');
+      for (let i = 0; i < stopLinks.length; i++) {
+        if (i === stopIdx) {
+          stopLinks[i].classList.add('active');
+        } else {
+          stopLinks[i].classList.remove('active');
+        }
+      }
+    }, { passive: true });
+  }
+
+  function populateGuestIdentity(guest) {
+    document.getElementById('hero-guest-name').textContent = guest.namaTamu;
+    document.getElementById('hero-guest-detail').textContent =
+      guest.gelarAtauInstansi + ' · ' + guest.kategori + ' · Kuota Undangan: ' + guest.kuotaMaksimal + ' Orang';
+
+    document.getElementById('rsvp-guest-badge').textContent = guest.namaTamu;
+    document.getElementById('rsvp-category-badge').textContent = guest.kategori;
+    document.getElementById('rsvp-quota-badge').textContent = 'Maksimal ' + guest.kuotaMaksimal + ' Orang';
+
+    document.getElementById('rsvp-name').value = guest.namaTamu;
+    document.getElementById('gift-sender').value = guest.namaTamu;
+    document.getElementById('wish-sender').value = guest.namaTamu;
+
+    const countSelect = document.getElementById('rsvp-count');
+    countSelect.innerHTML = '';
+    const maxSeats = Number(guest.kuotaMaksimal) || 2;
+    for (let i = 1; i <= maxSeats; i++) {
+      const opt = document.createElement('option');
+      opt.value = String(i);
+      opt.textContent = i + ' Orang';
+      countSelect.appendChild(opt);
+    }
+  }
+
+  // 3. Modal Lightbox Galeri dengan Resolusi Tinggi (w1200) Saat Dibuka
+  function openGalleryModal(idx) {
+    if (!GALLERY_ITEMS.length) return;
+    activeGalleryIndex = (idx + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
+    const item = GALLERY_ITEMS[activeGalleryIndex];
+    if (!item) return;
+    document.getElementById('modal-category').textContent = item.category;
+    document.getElementById('modal-title').textContent = item.title;
+    document.getElementById('modal-story').textContent = item.story;
+    document.getElementById('modal-img').src = item.fullImageUrl || item.imageUrl;
+    document.getElementById('gallery-modal').style.display = 'flex';
+  }
+
+  function stepGalleryModal(delta) {
+    if (!GALLERY_ITEMS.length) return;
+    openGalleryModal(activeGalleryIndex + delta);
+  }
+
+  function closeGalleryModal() {
+    document.getElementById('gallery-modal').style.display = 'none';
+  }
+
+  // 4. Pemutar Lagu "A Thousand Years" (Christina Perri) — Langsung Berputar Tanpa Backsound Synthesizer Awal
+  function ensureAudioElement() {
+    if (!audioPlayer) {
+      const domAudio = document.getElementById('wedding-bg-audio');
+      if (domAudio) {
+        audioPlayer = domAudio;
+        audioPlayer.volume = 0.78;
+      } else {
+        audioPlayer = new Audio(THOUSAND_YEARS_PRIMARY_URL);
+        audioPlayer.loop = true;
+        audioPlayer.preload = 'auto';
+        audioPlayer.volume = 0.78;
+      }
+
+      audioPlayer.addEventListener('error', function() {
+        if (!triedBackupAudio && audioPlayer) {
+          triedBackupAudio = true;
+          audioPlayer.src = THOUSAND_YEARS_BACKUP_URL;
+          audioPlayer.load();
+          if (musicPlaying) {
+            audioPlayer.play().catch(function() {});
+          }
+        }
+      });
+    }
+    return audioPlayer;
+  }
+
+  function preloadWeddingMusic() {
+    try {
+      const player = ensureAudioElement();
+      if (player.readyState < 2) {
+        player.load();
+      }
+    } catch (e) {}
+  }
+
+  function startWeddingMusic() {
+    if (musicPlaying) return;
+    musicPlaying = true;
+
+    const player = ensureAudioElement();
+    player.volume = 0.78;
+    player.play().catch(function() {
+      if (!triedBackupAudio) {
+        triedBackupAudio = true;
+        player.src = THOUSAND_YEARS_BACKUP_URL;
+        player.load();
+        player.play().catch(function() {});
+      }
+    });
+  }
+
+  // 5. Salin Nomor Rekening
+  function copyBankNumber(num, btnEl) {
+    navigator.clipboard.writeText(num);
+    const originalText = btnEl.textContent;
+    btnEl.textContent = 'Tersalin ✓';
+    setTimeout(function() {
+      btnEl.textContent = originalText;
+    }, 2000);
+  }
+
+  // 6. Kirim Form RSVP, Wedding Gift, dan Ucapan
+  function handleRsvpSubmit(e) {
+    e.preventDefault();
+    const payload = {
+      pin: activeGuest ? activeGuest.pin : '-',
+      namaTamu: document.getElementById('rsvp-name').value,
+      statusKehadiran: document.getElementById('rsvp-status').value,
+      jumlahHadir: document.getElementById('rsvp-count').value,
+      sesiAcara: document.getElementById('rsvp-session').value,
+      catatan: document.getElementById('rsvp-notes').value
+    };
+    const fb = document.getElementById('rsvp-feedback');
+    fb.style.display = 'block';
+    fb.textContent = 'Menyimpan konfirmasi kehadiran...';
+
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(function(res) {
+        fb.textContent = res.message;
+        document.getElementById('rsvp-notes').value = '';
+      }).submitRsvp(payload);
+    } else {
+      fb.textContent = 'Terima kasih, konfirmasi kehadiran (RSVP) Anda telah tercatat.';
+    }
+  }
+
+  function handleGiftSubmit(e) {
+    e.preventDefault();
+    const payload = {
+      pin: activeGuest ? activeGuest.pin : '-',
+      namaPengirim: document.getElementById('gift-sender').value,
+      metodeTujuan: document.getElementById('gift-method').value,
+      nominalAtauBarang: document.getElementById('gift-amount').value,
+      pesanKonfirmasi: document.getElementById('gift-message').value
+    };
+    const fb = document.getElementById('gift-feedback');
+    fb.style.display = 'block';
+    fb.textContent = 'Menyimpan konfirmasi pengiriman...';
+
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(function(res) {
+        fb.textContent = res.message;
+        document.getElementById('gift-amount').value = '';
+        document.getElementById('gift-message').value = '';
+      }).submitGiftConfirmation(payload);
+    } else {
+      fb.textContent = 'Terima kasih banyak, konfirmasi pengiriman tanda kasih Anda telah diterima.';
+    }
+  }
+
+  function handleWishSubmit(e) {
+    e.preventDefault();
+    const payload = {
+      pin: activeGuest ? activeGuest.pin : '-',
+      namaPengirim: document.getElementById('wish-sender').value,
+      statusKehadiran: document.getElementById('wish-status').value,
+      isiUcapan: document.getElementById('wish-content').value
+    };
+    const fb = document.getElementById('wish-feedback');
+    fb.style.display = 'block';
+    fb.textContent = 'Mengirim ucapan selamat...';
+
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(function(res) {
+        fb.textContent = 'Terima kasih, ucapan dan doa restu Anda telah ditambahkan.';
+        document.getElementById('wish-content').value = '';
+        if (res && res.wishes) {
+          renderWishesFeed(res.wishes);
+        }
+      }).submitWish(payload);
+    } else {
+      fb.textContent = 'Terima kasih, ucapan dan doa restu Anda telah ditambahkan.';
+    }
+  }
+
+  function renderWishesFeed(wishes) {
+    const container = document.getElementById('wishes-list');
+    if (!container) return;
+    if (!wishes || !wishes.length) {
+      container.innerHTML = '<p style="font-size:13px; color:#E8D5C4;">Belum ada ucapan yang masuk.</p>';
+      return;
+    }
+
+    container.innerHTML = wishes.map(function(w) {
+      return (
+        '<div class="wish-item">' +
+          '<div style="display:flex; justify-content:space-between; font-size:12px; color:#6D343E; margin-bottom:6px;">' +
+            '<strong style="color:#2B0910; font-size:14px;">' + escapeHtml(w.namaPengirim) + '</strong>' +
+            '<span style="color:#8B1C29; font-weight:700;">' + escapeHtml(w.statusKehadiran) + ' · ' + escapeHtml(w.timestamp) + '</span>' +
+          '</div>' +
+          '<p style="font-size:13.5px; color:#2B0910;">&ldquo;' + escapeHtml(w.isiUcapan) + '&rdquo;</p>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  function startCountdownTimer(isoDateStr) {
+    const target = new Date(isoDateStr).getTime();
+    function tick() {
+      const diff = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+</script>
