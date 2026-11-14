@@ -1,19 +1,15 @@
-// "A Thousand Years" — Christina Perri Wedding Music Player
-// Langsung memutar lagu MP3 "A Thousand Years" begitu PIN berhasil dibuka
+// "Jalaraning Tresna" — Woro Endah Wedding Music Player
+// Langsung memutar lagu MP3 "Jalaraning Tresna" begitu PIN berhasil dibuka
 // tanpa suara synthesizer/backsound buatan di awal.
 
-export const THOUSAND_YEARS_LOCAL_URL = '/audio/a_thousand_years.mp3';
+export const JALARANING_TRESNA_LOCAL_URL = '/audio/jalaraning_tresna.mp3';
 
-export const THOUSAND_YEARS_PRIMARY_URL =
-  'https://archive.org/download/christina-perri-a-thousand-years_20260624/Christina%20Perri%20-%20A%20Thousand%20Years.mp3';
-
-export const THOUSAND_YEARS_BACKUP_URL =
-  'https://archive.org/download/athousandyearschristinaperri_202003/A%20Thousand%20Years%20-%20Christina%20Perri.mp3';
+export const JALARANING_TRESNA_VERCEL_URL =
+  'https://invitation-wedding-ulfa-dimas-blush.vercel.app/audio/jalaraning_tresna.mp3';
 
 const AUDIO_SOURCES = [
-  THOUSAND_YEARS_LOCAL_URL,
-  THOUSAND_YEARS_PRIMARY_URL,
-  THOUSAND_YEARS_BACKUP_URL,
+  JALARANING_TRESNA_LOCAL_URL,
+  JALARANING_TRESNA_VERCEL_URL,
 ];
 
 class WeddingMusicController {
@@ -61,7 +57,7 @@ class WeddingMusicController {
   }
 
   /**
-   * Langsung memutar lagu "A Thousand Years" seketika saat PIN berhasil diverifikasi.
+   * Langsung memutar lagu "Jalaraning Tresna - Woro Endah" seketika saat PIN berhasil diverifikasi.
    */
   public start() {
     this.preload();
