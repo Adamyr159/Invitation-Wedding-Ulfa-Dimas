@@ -24,11 +24,46 @@ export const INITIAL_WEDDING_CONFIG: WeddingConfig = {
   namaTempat: 'Pendopo Agung Royal Ambarrukmo',
   alamatTempat: 'Jl. Laksda Adisucipto No. 81, Caturtunggal, Depok, Sleman, Yogyakarta',
   googleMapsUrl: 'https://maps.google.com/?q=Pendopo+Agung+Royal+Ambarrukmo+Yogyakarta',
-  alamatKirimKado: 'Perumahan Griya Permata Asri Blok B4 No. 12, Sleman, Yogyakarta 55281',
+  alamatKirimKado: 'Jl. Raya Lenteng Agung Gg.H.Tohir RT 004/005 No.44 Jagakarsa, Jakarta Selatan',
   kutipanJawa:
     'Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.',
   artiKutipanJawa: 'QS. Ar-Rum : 21',
 };
+
+export interface LoveStoryItem {
+  id: string;
+  phase: string;
+  period: string;
+  title: string;
+  story: string;
+}
+
+export const LOVE_STORY_ITEMS: LoveStoryItem[] = [
+  {
+    id: 'story-1',
+    phase: 'Babak 01',
+    period: 'Oktober 2022',
+    title: 'Awal Bertemu',
+    story:
+      'Oktober 2022 Menjadi awal dari sebuah cerita sederhana yang tak pernah kami sangka akan sejauh ini. Berawal dari pertemuan di kampus yang sama, dua orang yang sebelumnya asing perlahan saling mengenal. Dari sapaan sederhana, tumbuh percakapan, kedekatan, hingga rasa yang semakin bermakna.',
+  },
+  {
+    id: 'story-2',
+    phase: 'Babak 02',
+    period: 'Agustus 2026',
+    title: 'Tunangan',
+    story:
+      'Bulan Agustus 2026 Waktu membawa kami melewati berbagai cerita, mengajarkan arti saling memahami, bertahan, dan tumbuh bersama. Hingga akhirnya, bulan ini menjadi babak baru dalam perjalanan kami. Dengan niat baik dan restu keluarga kami mengikat janji untuk Tunangan.',
+  },
+  {
+    id: 'story-3',
+    phase: 'Babak 03',
+    period: 'Menuju Ikatan Suci',
+    title: 'Menikah',
+    story:
+      'Kini, dengan niat yang sama dan doa yang menyertai, kami memilih untuk menyempurnakan perjalanan ini dalam ikatan suci pernikahan. Sebagai awal baru untuk berbagi hidup, tumbuh dan menua bersama.',
+  },
+];
 
 export const INITIAL_GUESTS: GuestEntry[] = [
   {
@@ -86,25 +121,18 @@ export const INITIAL_GUESTS: GuestEntry[] = [
 
 export const INITIAL_BANK_ACCOUNTS: BankAccountInfo[] = [
   {
-    id: 'bank-bca',
-    namaBank: 'Bank Central Asia (BCA)',
-    nomorRekening: '4560891234',
-    atasNama: 'Ulfa Azizah',
-    cabangAtauKeterangan: 'KCU Yogyakarta',
-  },
-  {
-    id: 'bank-mandiri',
+    id: 'bank-mandiri-ulfa',
     namaBank: 'Bank Mandiri',
-    nomorRekening: '1370098765432',
-    atasNama: 'Dimas',
-    cabangAtauKeterangan: 'KCP Yogyakarta Sudirman',
+    nomorRekening: '1270014138570',
+    atasNama: 'ULFA AZIZAH',
+    cabangAtauKeterangan: 'Rekening Mempelai Wanita',
   },
   {
-    id: 'bank-bsi',
-    namaBank: 'Bank Syariah Indonesia (BSI)',
-    nomorRekening: '7198234567',
-    atasNama: 'Ulfa Azizah',
-    cabangAtauKeterangan: 'Kode Bank 451',
+    id: 'bank-mandiri-adimas',
+    namaBank: 'Bank Mandiri',
+    nomorRekening: '1270015507799',
+    atasNama: 'ADIMAS NOPIYANTO',
+    cabangAtauKeterangan: 'Rekening Mempelai Pria',
   },
 ];
 

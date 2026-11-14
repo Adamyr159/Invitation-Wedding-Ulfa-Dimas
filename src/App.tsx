@@ -36,6 +36,7 @@ import {
   INITIAL_RSVP_LIST,
   INITIAL_WEDDING_CONFIG,
   INITIAL_WISHES,
+  LOVE_STORY_ITEMS,
 } from './data/initialWeddingData';
 import { weddingMusic } from './utils/weddingMusicPlayer';
 import {
@@ -129,7 +130,7 @@ export default function App() {
   const [copiedBankId, setCopiedBankId] = useState<string | null>(null);
   const [giftSender, setGiftSender] = useState<string>(INITIAL_GUESTS[0].namaTamu);
   const [giftMethod, setGiftMethod] = useState<string>(
-    `${INITIAL_BANK_ACCOUNTS[0].namaBank} (${INITIAL_BANK_ACCOUNTS[0].nomorRekening})`
+    `${INITIAL_BANK_ACCOUNTS[0].namaBank} - ${INITIAL_BANK_ACCOUNTS[0].nomorRekening} (${INITIAL_BANK_ACCOUNTS[0].atasNama})`
   );
   const [giftAmount, setGiftAmount] = useState<string>('');
   const [giftMessage, setGiftMessage] = useState<string>('');
@@ -224,10 +225,11 @@ export default function App() {
   const JOURNEY_STOPS = [
     { id: 'hero', label: '01 · Pelaminan Sapaan' },
     { id: 'mempelai', label: '02 · Mempelai & Acara' },
-    { id: 'galeri', label: '03 · Galeri Momen' },
-    { id: 'rsvp', label: '04 · Konfirmasi RSVP' },
-    { id: 'wedding-gift', label: '05 · Tanda Kasih' },
-    { id: 'ucapan', label: '06 · Doa & Restu' },
+    { id: 'love-story', label: '03 · Love Story' },
+    { id: 'galeri', label: '04 · Galeri Momen' },
+    { id: 'rsvp', label: '05 · Konfirmasi RSVP' },
+    { id: 'wedding-gift', label: '06 · Tanda Kasih' },
+    { id: 'ucapan', label: '07 · Doa & Restu' },
   ];
 
   useEffect(() => {
@@ -878,6 +880,75 @@ export default function App() {
           </div>
         </section>
 
+        {/* 2B. LOVE STORY SECTION (PERJALANAN CINTA ULFA & DIMAS) */}
+        <section id="love-story" className="py-16 border-b border-[#D4AF37]/20">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#D4AF37] font-medium">
+              <Heart className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Love Story</span>
+            </div>
+            <h2 className="font-serif-jawa text-3xl sm:text-4xl font-semibold text-[#F5EFE6] mt-2">
+              Perjalanan Cinta Kami
+            </h2>
+            <p className="text-sm text-[#B8A898] mt-2 leading-relaxed">
+              Setiap langkah dan waktu yang kami lalui bersama hingga bermuara pada ikatan suci pernikahan:
+            </p>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            {/* Garis Vertikal Emas Penghubung Timeline */}
+            <div
+              className="hidden md:block absolute left-1/2 top-4 bottom-4 w-px -translate-x-1/2 bg-gradient-to-b from-[#D4AF37]/20 via-[#D4AF37]/65 to-[#D4AF37]/20"
+              aria-hidden="true"
+            />
+
+            <div className="space-y-8">
+              {LOVE_STORY_ITEMS.map((item, idx) => {
+                const isEven = idx % 2 === 0;
+                return (
+                  <div
+                    key={item.id}
+                    className={`relative flex flex-col md:flex-row items-stretch ${
+                      isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                    } gap-6 md:gap-10`}
+                  >
+                    {/* Titik Ornamen Emas di Tengah Garis Timeline */}
+                    <div
+                      className="hidden md:flex absolute left-1/2 top-8 -translate-x-1/2 z-10 w-9 h-9 rounded-full bg-[#26080E] border-2 border-[#D4AF37] items-center justify-center shadow-[0_0_18px_rgba(212,175,55,0.45)]"
+                      aria-hidden="true"
+                    >
+                      <Heart className="w-3.5 h-3.5 text-[#F3E5AB]" />
+                    </div>
+
+                    <div className="md:w-1/2">
+                      <div className="bg-[#FAF3E8] text-[#2B0910] border-2 border-[#D4AF37] rounded-2xl p-6 sm:p-7 shadow-[0_16px_40px_rgba(12,2,4,0.55)] h-full flex flex-col justify-between">
+                        <div>
+                          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#8B1C29]">
+                              {item.phase}
+                            </span>
+                            <span className="px-3 py-0.5 rounded-full bg-[#8B1C29]/10 border border-[#8B1C29]/30 font-mono-tabular text-[11px] font-semibold text-[#8B1C29]">
+                              {item.period}
+                            </span>
+                          </div>
+                          <h3 className="font-serif-jawa text-2xl sm:text-3xl font-bold text-[#2B0910] mt-1">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-[#5C232C] mt-3 leading-relaxed">
+                            {item.story}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="hidden md:block md:w-1/2" aria-hidden="true" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* 3. BENTO GALLERY & LIGHTBOX SECTION */}
         <section id="galeri" className="py-16 border-b border-[#D4AF37]/20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
@@ -1212,8 +1283,11 @@ export default function App() {
                     className="w-full px-4 py-3 rounded-xl bg-[#0D0A08] border border-[#D4AF37]/35 text-[#F5EFE6] text-sm focus:outline-none focus:border-[#D4AF37]"
                   >
                     {INITIAL_BANK_ACCOUNTS.map((b) => (
-                      <option key={b.id} value={`${b.namaBank} (${b.nomorRekening})`}>
-                        {b.namaBank} — {b.nomorRekening}
+                      <option
+                        key={b.id}
+                        value={`${b.namaBank} - ${b.nomorRekening} (${b.atasNama})`}
+                      >
+                        {b.namaBank} — {b.nomorRekening} (a.n. {b.atasNama})
                       </option>
                     ))}
                     <option value="Pengiriman Kado Fisik">
